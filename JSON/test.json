@@ -1,0 +1,33 @@
+
+
+var user = {
+
+        "id" :{
+            "name": {
+                "First" : "John",
+                "Middle" : "Darak", 
+                "Last" : "Kilmartin"
+            },               
+            "date_of_birth" : new Date( July 01, 1977'),     
+            "eyecolor" : "brown",           
+            "haircolor" : "blonde",         
+            "height" : 168                 
+        },
+
+        "wallet":{
+
+            "public_address": "string",
+            "private_address": "stringstring",
+            "total_transactions": 0,
+            "total_edits": 0
+        },
+
+        "records" :{
+            "birth-certificate" : 123,
+            "sight":  456,
+            "blood": 789
+        }
+    }   
+
+
+

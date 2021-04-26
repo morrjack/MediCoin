@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Jackson Morrell">
+        <title>Medical Input</title>
+
+
+          <script>
+            
+            //Check if form is filled out
+            function validateForm() {
+            
+            //Check First Name
+                var a = document.forms["Information"]["fname"].value;
+                if (a == "") {
+                    alert("First name must be filled out");
+                    return false;
+                }if ( 100 < a.charAt(0) < 133 ){
+                        first_name = a;  
+                    }else { //Make First Name Capitalized
+                        a = a.charAt(0).toUpercase()+ a.slice(1);
+                        first_name = a;
+                    }
+            
+            //Check Last Name   
+                var b = document.forms["Information"]["Lname"].value;
+                if (b == "") {
+                    alert("Last name must be filled out");
+                    return false;
+                }if ( 100 < b.charAt(0) < 133 ){
+                    last_name = b;   
+                }else { //Make Last Name Capitalized
+                    b = b.charAt(0).toUpercase()+ b.slice(1);
+                    last_name = b;
+                }
+            
+            //Check Date Of Birth    
+                var c = document.forms["Information"]["DOB"].value;
+                if (c == "") {
+                    alert("Date of Birth must be filled out");
+                    return false;
+                }
+            
+            //Check Height
+                var d = document.forms["Information"]["metric_height"].value;
+                if (d == "") {
+                    alert("Date of Birth must be filled out");
+                    return false;
+                } if(d <= 0 ){
+                    document.getElementById("metric_height").style.border = "thick solid #FF0000"; 
+                    (confirm("Height must be higher than 0 cm")); 
+                    return false;
+                }
+
+            //Check Weight
+                var e = document.forms["Information"]["metric_weight"].value;
+                if (e == "") {
+                    alert("height must be filled out");
+                    return false;
+                }if(e <= 0  ){
+                    document.getElementById("metric_weight").style.border = "thick solid #FF0000"; 
+                    (confirm("Weight must be heavier than 0 kg")); 
+                    return false;
+                }
+
+            //Check Verify
+                var f = document.forms["Information"]["verify"].value;
+                if(f == "") {
+                    alert("Verify button must be clicked");
+                    return false;
+                }if(f === 'False' ){
+                    return false;
+                }if(f === 'True') {
+                    return true;
+                }
+            
+            
+            //Check Pysician Name 
+                var g = document.forms["Information"]["physician_name"].value;
+                if(g == ""){
+                    alert("Verify button must be clicked");
+                    return false;
+                } 
+
+            //Check Pysician Key 
+                var h = document.forms["Information"]["signing_physician"].value;
+                if(h == ""){
+                    alert("Physician Private Key must be input");
+                    return false;
+                }else if(!h || h.length === 0){
+                    throw new Error('No signature in this transaction ');
+                    alert("Physician Private Key is empty: must have psysician key");
+                    document.getElementById("cbox").style.border = "thick solid #FF0000"; 
+                    return false;
+                }else if(h.length != 64) {
+                    throw new Error('Public Key is not correct length to be valid');
+                    alert("Private Key must be of valid length");
+                }else{
+                    var public_key = h; 
+                };
+
+                New_Patient_Object(a, b, c, d, e, f, g, h);
+
+            }
+
+
+            //Submit to JSON
+            function handleSubmit(event){
+                event.preventDefult();
+
+                const data = new FormData(event.target);
+
+                const value = Object.fromEnteries(data.entries());
+
+                console.log({value});
+            }
+            const form = document.querySelector('form');
+            form.addEventListener('submit', handleSubmit);
+
+
+
+            function New_Patient_Object(a, b, d, e, f, g, h){
+
+                
+                var New_Patient_Array = {
+                }
+
+                New_Patient_Array.First_Name = a;
+                New_Patient_Array.Last_Name = b;
+                New_Patient_Array.DOB = c;
+                New_Patient_Array.Height = d;
+                New_Patient_Array.Weight = e;
+                New_Patient_Array.Verifid = f;
+                New_Patient_Array.Physician_Name = g;
+            
+                console.log(New_Patient_Array);
+
+                
+                document.getElementById("root1").innerHTML = posroot;
+                document.getElementById("root2").innerHTML = negroot;
+            }
+
+
+          </script>
+
+
+          <style> 
+
+          </style>
+
+
+    </head>
+    <body>
+        <h1>Enter Information Here</h1>
+        <p>
+            This web page allows you to enter information for a firt time user/patient<br>
+            <i>Notice: this page assumes you have already generated your Private/Public Key</i><br><br>
+        </p>
+        <h2>Needed Before Completing</h2>
+            <ul>
+                <li>Your Private Key</li>
+                <li>Your Public Key</li>
+                <li>Your Physician/Care Members Private Key</li>
+                <li>Personal Information</li><br>
+                
+            </ul>
+        <form name = "Information" onsubmit="return validateForm()">
+            
+          First Name<br> 
+            <input type="text"  id="fname"  name="name" size="20"   placeholder = "John">
+            <br><br>         
+          Last Name<br> 
+            <input type="text"  id="lname"  size="20"   placeholder = "Doe">
+            <br><br>
+          Date Of Birth<br> 
+            <input type="date"  id="DOB"    size="8"> 
+            <br><br>
+          Height<br>
+            <input type="number"    id="metric_height"  size="5"> 
+            enter in cm
+            <br><br>
+          Weight
+            <input type="number"    id="metric_weight"  size="5">
+            enter in kg 
+            <br><br>
+          Verify <br>
+            <input  type="radio"    id="verify_T"   name = 'verify'    value="True">
+            <label for = "verify_T">This Information is correct</label><br>  
+            <input  type="radio"    id="verify_F"   name = 'verify'   value="False"   placeholder = '1'>
+            <label for = "verify_F">This Information is <b>not</b> correct</label><br> 
+            <br><br>
+          Enter Doctors Information<br>
+            Name: <br>
+            <input id = "physician_name"    placeholder = "Dr. Jane Dawson" size = "24">
+            <br>
+            Private Key<br>
+            <input  id="signing_physician"  placeholder="SHA256"    size="64">
+            <br><br>
+
+            <input type="Submit" value="Submit">
+            <br><br>
+
+        </form>
+        Root 1 =
+        <div id="root1"></div>  <br>
+        Root 2 =
+        <div id="root2"></div>  <br>
+        
+    </body>
+</html>

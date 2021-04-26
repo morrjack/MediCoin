@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <meta charset ="utf-8">
+    <title> MediCoin Login</title> 
+
+    <link rel = "stylesheet" href="CSS/basic.css"></link>
+</head>
+
+<script rel = "NewUserCheck" href="JS/NewUserCheck.js"></script>
+<script rel = "UserJSON" href="USERS/users.js"></script>
+
+
+
+<body>
+    <h1>Register for MediCoin</h1>
+    <h2>Soon we will have created and account for you and will soon generate your own wallet.</h2>
+    <h3>To start using MediCoin we have to create you a profile so you can access your records.</h3>
+    <p>
+        Blockchain uses a wallet system with both Public Keys and Private Keys<br>
+        
+            The Public Key is used when you want to allow someone access to your records.
+            The Private Key is used when changes need authorization 
+    </p><br><br>
+
+    <form id = "New_Register">
+        
+        <label for="fname">First Name:</label>
+            <input type= "text" id = "NRFname" name="fname" placeholder = "First Name"><br><br>
+
+        <label for="lname">Last Name:</label>
+            <input type= "text" id = "NRLname" name="lname" placeholder = "Last Name"><br><br>
+
+        <label for="email">Email Address:</label>
+            <input type= "text" id = "NRemail" name="email" placeholder = "noreply@medicoin.net"><br><br>
+
+        <label for="username">Username:</label>
+            <input type= "text" id = "NRusername" name="username" placeholder = "username"><br><br>
+        
+        <label for="email">Password:</label>
+            <input type= "password" id="NRpass" name="password" placeholder = "password"><br>
+            <input type= "password" id="NRpassvar" name="password" placeholder = "retype"><br><br>
+
+        <button onclick="NewUserCheck.Check(form)">Register</button>
+    </form>
+
+</body>
+
+</html>

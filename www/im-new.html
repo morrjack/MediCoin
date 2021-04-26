@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <meta charset ="utf-8">
+    <title> New To MediCoin</title> 
+
+    <link rel = "stylesheet" href="CSS/basic.css">
+</head>
+
+<script>
+    function newwallet(){
+        location.replace(href="/www/new-wallet.html");
+    }
+
+</script>
+
+
+
+<body>
+    <h1>Hi this is MediCoin</h1>
+    <h2>MediCoin is a blockchain that stores your medical information safely and securly</h2>
+    <h3>To start using MediCoin we have to create you a private wallet for you to store your records</h3>
+    <P>
+        Blockchain uses a wallet system with both Public Keys and Private Keys<br>
+        
+            The Public Key is used when you want to allow someone access to your records.
+            The Private Key is used when changes need authorization 
+    </P>
+
+    <form id = "new-wallet">
+        <input type= "button" Value = "New Wallet" onclick="newwallet();"><br><br>
+    </form>
+    <form action="Register.html">
+        <input type= "submit" Value = "Register Now"><br><br>
+    </form>
+
+</body>
+
+</html>
